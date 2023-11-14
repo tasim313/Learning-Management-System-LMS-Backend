@@ -13,3 +13,11 @@ class CourseList(generics.ListCreateAPIView):
     serializer_class = course.CourseSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['uid', 'userId']
+
+
+class CourseDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = course.CourseSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['uid', 'userId']
+    lookup_field = "uid"
