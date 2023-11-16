@@ -109,6 +109,12 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+MEDIA_DIR = BASE_DIR / 'media'
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = 'http://192.168.88.81:8000/media/'
+MEDIA_URL_2 = '/media/'
+
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
