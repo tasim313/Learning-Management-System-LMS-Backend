@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    categories = models.ForeignKey(Category, on_delete=models.CASCADE)
+    categories = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     uid = models.UUIDField(
         db_index=True, unique=True, default=uuid.uuid4, editable=False
     )
