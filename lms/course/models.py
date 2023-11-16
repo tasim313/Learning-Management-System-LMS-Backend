@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    categories = models.ManyToManyField(Category, through="CourseCollectionBridge")
+    categories = models.ForeignKey(Category, on_delete=models.CASCADE)
     uid = models.UUIDField(
         db_index=True, unique=True, default=uuid.uuid4, editable=False
     )
@@ -35,18 +35,6 @@ class Course(models.Model):
     isPublished = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updateAt = models.DateTimeField(auto_now=True)
-
-
-class CourseCollectionBridge(models.Model):
-    courses = models.ForeignKey(Course, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ("courses", "category")
-        index_together = ("category", "category")
-
-    def __str__(self):
-        return f"Courses: ({self.courses}), Category: ({self.category})"
 
 
 class Attachment(models.Model):

@@ -5,6 +5,10 @@ from rest_framework import filters
 from ...models import Course
 from ..serializers import course
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
@@ -16,6 +20,4 @@ class CourseList(generics.ListCreateAPIView):
 class CourseDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = course.CourseSerializer
-    # filter_backends = [DjangoFilterBackend]
-    # filterset_fields = ['uid', 'userId',  'categories__uid']
     lookup_field = "uid"

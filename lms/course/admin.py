@@ -16,6 +16,7 @@ class CourseAdmin(admin.ModelAdmin):
         'description',
         "imageUrl",
         "price",
+        "categories",
         "isPublished",
         'createdAt',
         'updateAt',
