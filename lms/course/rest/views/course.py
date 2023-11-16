@@ -21,3 +21,12 @@ class CourseDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = course.CourseSerializer
     lookup_field = "uid"
+
+    def perform_update(self, serializer):
+        try:
+            instance = serializer.save()
+            
+            logger.debug("Updated Course instance: %s", instance.__dict__)
+        except Exception as e:
+            logger.error("Error updating Course instance: %s", e)
+            raise
