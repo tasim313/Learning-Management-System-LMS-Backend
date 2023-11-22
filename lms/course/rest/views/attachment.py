@@ -13,7 +13,7 @@ class AttachmentList(generics.ListCreateAPIView):
     queryset = Attachment.objects.all()
     serializer_class = attachment.AttachmentSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['uid', 'name']
+    filterset_fields = ['uid', 'name', 'courseInfo__uid']
 
 
 class AttachmentDetails(generics.RetrieveUpdateDestroyAPIView):
