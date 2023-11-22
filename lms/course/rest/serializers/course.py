@@ -25,6 +25,7 @@ class CourseSerializer(serializers.ModelSerializer):
         
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
+        instance.price = validated_data.get('price', instance.price)
        
         instance.save()
         return instance

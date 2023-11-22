@@ -112,7 +112,7 @@ STATIC_URL = "static/"
 MEDIA_DIR = BASE_DIR / 'media'
 
 MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = 'http://192.168.88.81:8000/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 MEDIA_URL_2 = '/media/'
 
 

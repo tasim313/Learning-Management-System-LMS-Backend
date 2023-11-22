@@ -34,10 +34,13 @@ class Course(models.Model):
         upload_to=get_course_image,
         null=True, blank=True)
     
-    price = models.FloatField(default=0, blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
     isPublished = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updateAt = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Attachment(models.Model):

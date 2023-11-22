@@ -5,6 +5,7 @@ from django.contrib import admin
 from .models import(
     Course,
     Category,
+    Attachment
 )
 
 
@@ -32,3 +33,15 @@ class CategoryAdmin(admin.ModelAdmin):
         )
     
 admin.site.register(Category, CategoryAdmin)
+
+
+class AttachmentAdmin(admin.ModelAdmin):
+    list_display = (
+        'uid',
+        'name',
+        'url',
+        "courseInfo",
+        'createdAt',
+        'updateAt',
+        )
+admin.site.register(Attachment, AttachmentAdmin)
