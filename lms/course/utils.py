@@ -13,6 +13,11 @@ def get_attachment_file(instance, filename):
     return f"attachments/{uid}-{filename}"
 
 
+def get_chapter_video_file(instance, filename):
+    uid = str(uuid4()).split("-")[-1]
+    return f"chapter/{uid}-{filename}"
+
+
 def get_course_instance(uid):
     from django.core.exceptions import (
         ObjectDoesNotExist,
