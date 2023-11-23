@@ -13,15 +13,22 @@ logger = logging.getLogger(__name__)
 class AttachmentList(generics.ListCreateAPIView):
     queryset = Attachment.objects.all()
     serializer_class = attachment.AttachmentSerializer
+    
+
+
+class AttachmentListAPI(generics.ListAPIView):
+    queryset = Attachment.objects.all()
+    serializer_class = attachment.AttachmentListSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['uid', 'name', 'courseInfo__uid']
+
 
     
 
 
 class AttachmentDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attachment.objects.all()
-    serializer_class = attachment.AttachmentSerializer
+    serializer_class = attachment.AttachmentUpdateSerializer
     lookup_field = "uid"
 
     def perform_update(self, serializer):

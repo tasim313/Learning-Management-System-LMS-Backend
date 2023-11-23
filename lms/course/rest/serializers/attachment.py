@@ -3,6 +3,7 @@ from versatileimagefield.serializers import VersatileImageFieldSerializer
 
 
 from ...models import Attachment, Course
+from ..serializers import course
 
 import logging
 
@@ -43,13 +44,48 @@ class AttachmentSerializer(serializers.Serializer):
 
     
 
+
+class AttachmentUpdateSerializer(serializers.ModelSerializer):
+    courseId = serializers.UUIDField(source='courseInfo.uid', required=False)    
+  
+
+    class Meta:
+        model = Attachment
+        fields = (
+            'uid',
+            'name',
+            'file',
+            'courseId',
+            'createdAt',
+            'updateAt',
+        )
+
     def update(self, instance, validated_data):
+        
         courses_data = validated_data.pop('courseInfo', None)
         if courses_data is not None:
-            instance.courseInfo = Course.objects.get(uid=courses_data['uid'])
+            instance.courseId = Course.objects.get(uid=courses_data['uid'])
         
         instance.name = validated_data.get('name', instance.name)
-        instance.file = validated_data.get('file', instance.file)  
-        
+        instance.file = validated_data.get('file', instance.file) 
+       
         instance.save()
         return instance
+    
+
+    
+
+class AttachmentListSerializer(serializers.ModelSerializer):
+
+    courseInfo = course.CourseSerializer(required=False, read_only=True)
+        
+    class Meta:
+        model = Attachment
+        fields = (
+            'uid',
+            'name',
+            'file',
+            'courseInfo',
+            'createdAt',
+            'updateAt',
+        )

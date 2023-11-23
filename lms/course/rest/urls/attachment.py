@@ -11,4 +11,7 @@ urlpatterns = [
     path("<uuid:uid>/", 
          attachment.AttachmentDetails.as_view(),
          name="attachment-update-delete"),
+    path("list/", 
+          attachment.AttachmentListAPI.as_view(),
+          name="attachment-list"),
 ]
