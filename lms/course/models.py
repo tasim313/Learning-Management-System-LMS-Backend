@@ -5,7 +5,8 @@ from versatileimagefield.fields import VersatileImageField
 
 
 from .utils import(
-    get_course_image
+    get_course_image,
+    get_attachment_file
 )
 
 
@@ -48,7 +49,7 @@ class Attachment(models.Model):
         db_index=True, unique=True, default=uuid.uuid4, editable=False
     )
     name = models.CharField(max_length=200, db_index=True, blank=True, null=True)
-    url = models.URLField(blank=True, null=True)
+    file = models.FileField(upload_to=get_attachment_file, null=True, blank=True)
     courseInfo = models.ForeignKey(Course, on_delete=models.CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updateAt = models.DateTimeField(auto_now=True)

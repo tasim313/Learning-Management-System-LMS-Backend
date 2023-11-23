@@ -39,7 +39,7 @@ class AttachmentAdmin(admin.ModelAdmin):
     list_display = (
         'uid',
         'name',
-        'url',
+        'file',
         "courseInfo",
         'createdAt',
         'updateAt',

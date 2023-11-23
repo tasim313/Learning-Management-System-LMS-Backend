@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 
+
 from ...models import Attachment
 from ..serializers import attachment
 
@@ -14,6 +15,8 @@ class AttachmentList(generics.ListCreateAPIView):
     serializer_class = attachment.AttachmentSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['uid', 'name', 'courseInfo__uid']
+
+    
 
 
 class AttachmentDetails(generics.RetrieveUpdateDestroyAPIView):
